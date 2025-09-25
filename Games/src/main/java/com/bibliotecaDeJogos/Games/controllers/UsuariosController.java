@@ -1,11 +1,10 @@
 package com.bibliotecaDeJogos.Games.controllers;
 
-import com.bibliotecaDeJogos.Games.models.PerfilGamer; 
 import com.bibliotecaDeJogos.Games.models.Usuarios;
 import com.bibliotecaDeJogos.Games.repositories.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus; 
-import org.springframework.http.ResponseEntity; 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,16 +18,7 @@ public class UsuariosController {
 
 	@PostMapping
 	public ResponseEntity<Usuarios> salvarUsuario(@RequestBody Usuarios usuario) {
-
-		PerfilGamer perfilGamer = usuario.getPerfilGamer();
-
-		if (perfilGamer != null) {
-
-			perfilGamer.setUsuario(usuario);
-		}
-
 		Usuarios usuarioSalvo = usuariosRepository.save(usuario);
-
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
 	}
 

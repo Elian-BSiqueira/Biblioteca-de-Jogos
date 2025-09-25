@@ -1,34 +1,39 @@
 package com.bibliotecaDeJogos.Games.models;
 
 import jakarta.persistence.*;
-import lombok.Getter; 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.AllArgsConstructor;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuario_biblioteca") // melhor evitar 'usuario' como nome de tabela
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class UsuarioJogos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String nome;
+
+	@Column(nullable = false, unique = true)
 	private String email;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "usuario_jogo",
-			joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "jogo_id"))
+	@JoinTable(name = "usuario_jogo", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "jogo_id"))
 	private Set<Jogo> jogos = new HashSet<>();
 
 	public void adicionarJogo(Jogo jogo) {
 		this.jogos.add(jogo);
-		jogo.getUsuarios().add(this);
+		jogo.getUsuarios().add(this); // agora compila normal
 	}
 
 	public void removerJogo(Jogo jogo) {

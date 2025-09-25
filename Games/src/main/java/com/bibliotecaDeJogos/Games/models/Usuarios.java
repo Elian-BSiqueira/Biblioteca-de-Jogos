@@ -3,6 +3,7 @@ package com.bibliotecaDeJogos.Games.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "usuarios") 
 public class Usuarios {
 
 	@Id
@@ -12,10 +13,11 @@ public class Usuarios {
 	private String nome;
 	private String senha;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "perfil_gamer_id")
-	private PerfilGamer perfilGamer;
 
+	@Column(name = "nickname", unique = true) 
+	private String nickname;
+
+	// Getters e Setters
 	public Long getId() {
 		return id;
 	}
@@ -40,11 +42,11 @@ public class Usuarios {
 		this.senha = senha;
 	}
 
-	public PerfilGamer getPerfilGamer() {
-		return perfilGamer;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setPerfilGamer(PerfilGamer perfilGamer) {
-		this.perfilGamer = perfilGamer;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }
