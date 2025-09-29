@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "usuario_biblioteca") // melhor evitar 'usuario' como nome de tabela
+@Table(name = "usuario_biblioteca")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,7 +33,7 @@ public class UsuarioJogos {
 
 	public void adicionarJogo(Jogo jogo) {
 		this.jogos.add(jogo);
-		jogo.getUsuarios().add(this); // agora compila normal
+		jogo.getUsuarios().add(this);
 	}
 
 	public void removerJogo(Jogo jogo) {

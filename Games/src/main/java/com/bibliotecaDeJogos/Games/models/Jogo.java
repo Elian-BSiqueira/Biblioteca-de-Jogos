@@ -16,47 +16,44 @@ import java.util.Set;
 @NoArgsConstructor
 public class Jogo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private String titulo;
+	@Column(nullable = false)
+	private String titulo;
 
-    private String genero;
+	private String genero;
 
-    @ManyToOne
-    @JoinColumn(name = "desenvolvedora_id")
-    private Desenvolvedora desenvolvedora;
+	@ManyToOne
+	@JoinColumn(name = "desenvolvedora_id")
+	private Desenvolvedora desenvolvedora;
 
-    @ManyToMany(mappedBy = "jogos")
-    @JsonIgnore
-    private Set<UsuarioJogos> usuarios = new HashSet<>();
+	@ManyToMany(mappedBy = "jogos")
+	@JsonIgnore
+	private Set<UsuarioJogos> usuarios = new HashSet<>();
 
-    // =============================================================
-    // MÉTODOS SET ADICIONADOS MANUALMENTE PARA O TESTE
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-    // =============================================================
-    
-    public Set<UsuarioJogos> getUsuarios() {
-        return usuarios;
-    }
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
 
-    public void setUsuarios(Set<UsuarioJogos> usuarios) {
-        this.usuarios = usuarios;
-    }
+	public Set<UsuarioJogos> getUsuarios() {
+		return usuarios;
+	}
 
-    public Desenvolvedora getDesenvolvedora() {
-        return desenvolvedora;
-    }
+	public void setUsuarios(Set<UsuarioJogos> usuarios) {
+		this.usuarios = usuarios;
+	}
 
-    public void setDesenvolvedora(Desenvolvedora desenvolvedora) {
-        this.desenvolvedora = desenvolvedora;
-    }
+	public Desenvolvedora getDesenvolvedora() {
+		return desenvolvedora;
+	}
+
+	public void setDesenvolvedora(Desenvolvedora desenvolvedora) {
+		this.desenvolvedora = desenvolvedora;
+	}
 }

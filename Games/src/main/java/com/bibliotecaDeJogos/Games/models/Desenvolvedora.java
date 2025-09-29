@@ -8,57 +8,55 @@ import java.util.List;
 @Table(name = "desenvolvedora")
 public class Desenvolvedora {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false) // garante que não vai inserir NULL no banco
-    private String nome;
+	@Column(nullable = false)
+	private String nome;
 
-    @OneToMany(mappedBy = "desenvolvedora", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Jogo> jogos = new ArrayList<>();
+	@OneToMany(mappedBy = "desenvolvedora", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Jogo> jogos = new ArrayList<>();
 
-    // Construtor vazio (necessário para o JPA/Jackson)
-    public Desenvolvedora() {}
+	public Desenvolvedora() {
+	}
 
-    // Construtor com argumento
-    public Desenvolvedora(String nome) {
-        this.nome = nome;
-    }
+	public Desenvolvedora(String nome) {
+		this.nome = nome;
+	}
 
-    // Getters e Setters
-    public Long getId() {
-        return id;
-    }
+	// Getters e Setters
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public List<Jogo> getJogos() {
-        return jogos;
-    }
+	public List<Jogo> getJogos() {
+		return jogos;
+	}
 
-    public void setJogos(List<Jogo> jogos) {
-        this.jogos = jogos;
-    }
+	public void setJogos(List<Jogo> jogos) {
+		this.jogos = jogos;
+	}
 
-    // helper para adicionar jogos diretamente
-    public void addJogo(Jogo jogo) {
-        jogos.add(jogo);
-        jogo.setDesenvolvedora(this);
-    }
+	public void addJogo(Jogo jogo) {
+		jogos.add(jogo);
+		jogo.setDesenvolvedora(this);
+	}
 
-    public void removeJogo(Jogo jogo) {
-        jogos.remove(jogo);
-        jogo.setDesenvolvedora(null);
-    }
+	public void removeJogo(Jogo jogo) {
+		jogos.remove(jogo);
+		jogo.setDesenvolvedora(null);
+	}
 }
