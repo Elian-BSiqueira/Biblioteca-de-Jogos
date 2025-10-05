@@ -12,7 +12,6 @@ import java.util.Set;
 @Entity
 @Table(name = "jogo")
 @Getter
-// @Setter // <-- REMOVIDA
 @NoArgsConstructor
 public class Jogo {
 
